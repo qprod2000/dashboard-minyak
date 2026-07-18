@@ -1,0 +1,9 @@
+services:
+  oil-dashboard:
+    build: .
+    container_name: dashboard-alokasi-minyak
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
