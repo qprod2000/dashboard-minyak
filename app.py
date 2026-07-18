@@ -21,6 +21,9 @@ def load_data():
     rekap = pd.read_csv("data/rekap.csv", parse_dates=["Tanggal"])
     for df in (geragai, phejm, crude, mix, fso, rekap):
         df.columns = [c.strip() for c in df.columns]
+        for col in df.columns:
+            if col != "Tanggal":
+                df[col] = pd.to_numeric(df[col], errors="coerce")
     return geragai, phejm, crude, mix, fso, rekap
 
 geragai, phejm, crude, mix, fso, rekap = load_data()
