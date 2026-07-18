@@ -176,7 +176,7 @@ with tabs[1]:
 with tabs[2]:
     st.subheader("Shrinkage & Losses Harian — Condensate Geragai")
     fig = go.Figure()
-    for col in ["Emulsi", "Evaporasi", "Shrinkage Lv 1 ", "Shrinkage Lv 2"]:
+    for col in ["Emulsi", "Evaporasi", "Shrinkage Lv 1", "Shrinkage Lv 2"]:
         fig.add_trace(go.Bar(x=geragai_f["Tanggal"], y=geragai_f[col], name=col.strip()))
     fig.update_layout(barmode="stack", height=420, yaxis_title="bbl")
     st.plotly_chart(fig, use_container_width=True)
@@ -184,8 +184,8 @@ with tabs[2]:
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("Total Losses per Sumber (kumulatif periode)")
-        loss_cols_geragai = geragai_f[["Emulsi", "Evaporasi", "Shrinkage Lv 1 ", "Shrinkage Lv 2"]].sum()
-        loss_cols_phejm = phejm_f[["Emulsi", "Evaporasi", "Shrinkage Lv 1 ", "Shrinkage Lv 2"]].sum()
+        loss_cols_geragai = geragai_f[["Emulsi", "Evaporasi", "Shrinkage Lv 1", "Shrinkage Lv 2"]].sum()
+        loss_cols_phejm = phejm_f[["Emulsi", "Evaporasi", "Shrinkage Lv 1", "Shrinkage Lv 2"]].sum()
         loss_df = pd.DataFrame({"Geragai": loss_cols_geragai.values,
                                  "PHEJM": loss_cols_phejm.values},
                                 index=["Emulsi", "Evaporasi", "Shrinkage Lv 1", "Shrinkage Lv 2"])
@@ -195,7 +195,7 @@ with tabs[2]:
     with col2:
         st.subheader("% Loss terhadap Gross Volume")
         geragai_f2 = geragai_f.copy()
-        geragai_f2["Total Loss"] = geragai_f2[["Emulsi", "Evaporasi", "Shrinkage Lv 1 ", "Shrinkage Lv 2"]].sum(axis=1)
+        geragai_f2["Total Loss"] = geragai_f2[["Emulsi", "Evaporasi", "Shrinkage Lv 1", "Shrinkage Lv 2"]].sum(axis=1)
         geragai_f2["% Loss"] = geragai_f2["Total Loss"] / geragai_f2["Gross Vol"] * 100
         fig3 = px.line(geragai_f2, x="Tanggal", y="% Loss")
         fig3.update_layout(height=380, yaxis_title="% Loss")
